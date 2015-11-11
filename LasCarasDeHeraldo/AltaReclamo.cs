@@ -12,6 +12,8 @@ namespace LasCarasDeHeraldo
 {
     public partial class AltaReclamo : Form
     {
+        public Usuario User { get; internal set; }
+
         public AltaReclamo()
         {
             InitializeComponent();
@@ -28,18 +30,16 @@ namespace LasCarasDeHeraldo
             {
                 try
                 {
-                    Usuario usuario = context.Usuarios.ToList<Usuario>().Where(u => u.Id == this.User).FirstOrDefault<Usuario>();
-                    List<Usuario> lLista = new List<Usuario>() { usuario };
-                    Reclamo lReclamo = new Reclamo() { Titulo = textBox1.Text, Comentario = richTextBox1.Text, Usuario = usuario, UsuariosAdherentes=lLista };
+                    List<Usuario> lLista = new List<Usuario>() { this.User };
+                    Reclamo lReclamo = new Reclamo() { Titulo = textBox1.Text, Comentario = richTextBox1.Text, Usuario = this.User, UsuariosAdherentes=lLista };
                     context.Reclamos.Add(lReclamo);
                     context.SaveChanges();
                     MessageBox.Show("Reclamo guardado correctamente","Exito",MessageBoxButtons.OK);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Excepcion no manejada...");
+                    MessageBox.Show("Excepcion no manejada...","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     throw ex;
-                   //ex.InnerException
                 }
                 
             }

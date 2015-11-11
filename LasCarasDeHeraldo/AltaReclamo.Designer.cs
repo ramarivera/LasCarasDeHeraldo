@@ -141,6 +141,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolTip toolTip1;
 
-        public int User { get; internal set; }
+        
     }
 }

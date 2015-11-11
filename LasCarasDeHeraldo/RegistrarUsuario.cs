@@ -14,9 +14,13 @@ namespace LasCarasDeHeraldo
     {
         private readonly BindingList<TipoUsuario> listaTipos = new BindingList<TipoUsuario>();
 
+        public bool AdminMode { get; internal set; }
+
         public RegistrarUsuario()
         {
             InitializeComponent();
+            Shown += RegistrarUsuario_Shown;
+
             using (var context = new ReclamoEntities())
             {
                 try
@@ -28,23 +32,25 @@ namespace LasCarasDeHeraldo
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Excepcion no manejada...");
+                    MessageBox.Show("Autenticacion Invalida, vuelvalo a intentar", "Error de Autenticacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw ex;
                 }
             }
-            
+
         }
 
-        public void ModoAdmin (bool modo = false)
+        private void RegistrarUsuario_Shown(object sender, EventArgs e)
         {
-            if (!modo)
+            if (!AdminMode)
             {
                 this.label5.Hide();
                 this.comboBox1.Hide();
                 this.comboBox1.SelectedIndex = 1;
             }
         }
-        
+
+
+            
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -58,18 +64,6 @@ namespace LasCarasDeHeraldo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /*
-            Usuario usuario = context.Usuarios.ToList<Usuario>().Where(u => u.Id == this.User).FirstOrDefault<Usuario>();
-            List<Usuario> lLista = new List<Usuario>() { usuario };
-            Reclamo lReclamo = new Reclamo() { Titulo = textBox1.Text, Comentario = richTextBox1.Text, Usuario = usuario, Usuarios = lLista };
-            context.Reclamos.Add(lReclamo);
-            context.SaveChanges();
-            MessageBox.Show("Reclamo guardado correctamente", "Exito", MessageBoxButtons.OK);
-
-
-
-    */
-          //  MessageBox.Show(this.textBox1.Text == String.Empty ? "Empty" : "Otra Cosa :(");
             using (var context = new ReclamoEntities())
             {
                 try
@@ -92,7 +86,7 @@ namespace LasCarasDeHeraldo
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show("Excepcion no manejada...");
+                    MessageBox.Show("Autenticacion Invalida, vuelvalo a intentar", "Error de Autenticacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw ex;
                 }
                 finally

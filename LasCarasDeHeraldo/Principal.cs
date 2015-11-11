@@ -12,6 +12,7 @@ namespace LasCarasDeHeraldo
 {
     public partial class Principal : Form
     {
+        public Usuario User { get; internal set; }
         public Principal()
         {
             InitializeComponent();
@@ -22,6 +23,16 @@ namespace LasCarasDeHeraldo
             var lAlta = new AltaReclamo();
             lAlta.User = this.User; 
             lAlta.ShowDialog();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Salir();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void buscarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -39,6 +50,20 @@ namespace LasCarasDeHeraldo
         private void pictureBox2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Salir()
+        {
+            DialogResult lResult = MessageBox.Show("Desea salir del sistema?", "Salir", MessageBoxButtons.YesNo);
+            if (lResult == DialogResult.Yes)
+            {
+                this.Close();
+            }
+
+        }
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Salir();   
         }
     }
 }

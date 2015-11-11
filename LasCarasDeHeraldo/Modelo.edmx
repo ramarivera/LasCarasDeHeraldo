@@ -28,6 +28,7 @@
           <Property Name="Reclamo_Id" Type="int" Nullable="false" />
           <Property Name="Estado_Id" Type="int" Nullable="false" />
           <Property Name="Area_Id" Type="int" Nullable="false" />
+          <Property Name="fechaHora" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Reclamo">
           <Key>
@@ -71,8 +72,8 @@
           <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TipoUser_Id" Type="int" Nullable="false" />
-          <Property Name="Contraseña" Type="nvarchar(max)" />
-          <Property Name="NombreUsuario" Type="nvarchar(max)" />
+          <Property Name="Contraseña" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NombreUsuario" Type="nvarchar" MaxLength="40" Nullable="false" />
         </EntityType>
         <Association Name="FK_HistoricoArea">
           <End Role="Area" Type="Self.Area" Multiplicity="1" />
@@ -228,6 +229,7 @@
           <NavigationProperty Name="Area" Relationship="Self.FK_HistoricoArea" FromRole="Historico" ToRole="Area" />
           <NavigationProperty Name="Estado" Relationship="Self.FK_HistoricoEstado" FromRole="Historico" ToRole="Estado" />
           <NavigationProperty Name="Reclamo" Relationship="Self.FK_ReclamoHistorico" FromRole="Historico" ToRole="Reclamo" />
+          <Property Name="FechaHora" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="Reclamo">
           <Key>
@@ -270,8 +272,8 @@
           <NavigationProperty Name="Reclamos" Relationship="Self.FK_ReclamoUsuario1" FromRole="Usuario" ToRole="Reclamo" />
           <NavigationProperty Name="TipoUsuario" Relationship="Self.FK_UsuarioTipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
           <NavigationProperty Name="ReclamosAdheridos" Relationship="Self.ReclamoUsuario" FromRole="Usuario" ToRole="Reclamo" />
-          <Property Name="Contraseña" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
-          <Property Name="NombreUsuario" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="Contraseña" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="false" />
+          <Property Name="NombreUsuario" Type="String" Unicode="true" FixedLength="false" MaxLength="40" Nullable="false" />
         </EntityType>
         <Association Name="FK_HistoricoArea">
           <End Role="Area" Type="Self.Area" Multiplicity="1" />
@@ -395,6 +397,7 @@
           <EntitySetMapping Name="Historicoes">
             <EntityTypeMapping TypeName="ReclamosModel.Historico">
               <MappingFragment StoreEntitySet="Historico">
+                <ScalarProperty Name="FechaHora" ColumnName="fechaHora" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
                 <ScalarProperty Name="Reclamo_Id" ColumnName="Reclamo_Id" />
@@ -466,7 +469,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

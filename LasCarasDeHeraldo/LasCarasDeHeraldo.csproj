@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActualizarEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActualizarEstado.Designer.cs">
+      <DependentUpon>ActualizarEstado.cs</DependentUpon>
+    </Compile>
     <Compile Include="AltaReclamo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     <Compile Include="Usuario.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ActualizarEstado.resx">
+      <DependentUpon>ActualizarEstado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AltaReclamo.resx">
       <DependentUpon>AltaReclamo.cs</DependentUpon>
     </EmbeddedResource>

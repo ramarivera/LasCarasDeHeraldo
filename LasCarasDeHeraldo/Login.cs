@@ -15,6 +15,17 @@ namespace LasCarasDeHeraldo
         public Login()
         {
             InitializeComponent();
+            this.AcceptButton = this.button1;
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -31,15 +42,34 @@ namespace LasCarasDeHeraldo
         {
             using (var context = new ReclamoEntities())
             {
-                String lUsuarioIngresado = this.textBox2.Text;
-                String lContraseña = this.textBox1.Text;
-                /*List <Usuario> lLista = context.Usuarios.Where(us => us.NombreUsuario == lUsuarioIngresado);
+                try
+                {
+                    String lUsuarioIngresado = this.textBox2.Text;
+                    String lContraseña = this.textBox1.Text;
 
-                this.Hide();
-                var lPrin = new Principal();
-                lPrin.User = (( == String.Empty) ? 2 : int.Parse(this.textBox1.Text));
-                lPrin.Closed += (s, args) => this.Close();
-                lPrin.Show();*/
+                    Usuario lUsuario = context.Usuarios.Where(us => us.NombreUsuario == lUsuarioIngresado).FirstOrDefault<Usuario>();
+
+                    if (lUsuario != null && lUsuario.Contraseña == lContraseña)
+                    {
+                        this.Hide();
+                        var lPrin = new Principal();
+                        lPrin.User = lUsuario;
+                        lPrin.Closed += (s, args) => this.Close();
+                        lPrin.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Autenticacion Invalida, vuelvalo a intentar", "Error de Autenticacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex )
+                {
+
+                    MessageBox.Show("5 manejada...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw ex;
+                }
+                
+                
             }
             
             
@@ -48,10 +78,15 @@ namespace LasCarasDeHeraldo
         private void button2_Click(object sender, EventArgs e)
         {
             RegistrarUsuario lReg = new RegistrarUsuario();
-            lReg.ModoAdmin(true);
+            lReg.AdminMode = true;
             this.Hide();
             lReg.ShowDialog();
             this.Show();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
