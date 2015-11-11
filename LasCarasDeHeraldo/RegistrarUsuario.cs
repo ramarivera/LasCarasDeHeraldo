@@ -73,20 +73,32 @@ namespace LasCarasDeHeraldo
                     string lContraseña = textBox3.Text;
                     string lCorreo = textBox2.Text;
 
-                    Usuario lUsuario = new Usuario() { Nombre = lNombre, Email = lCorreo, NombreUsuario = lNombreUsuario, Contraseña = lContraseña };
+                    var lRes = context.Usuarios.Where(us => us.NombreUsuario == lNombreUsuario).FirstOrDefault<Usuario>();
 
-                    int lIdTipo = ((TipoUsuario)comboBox1.SelectedItem).Id;
+                    if (lRes == null)
+                    {
+                        Usuario lUsuario = new Usuario() { Nombre = lNombre, Email = lCorreo, NombreUsuario = lNombreUsuario, Contraseña = lContraseña };
 
-                    lUsuario.TipoUser_Id = lIdTipo;
+                        int lIdTipo = ((TipoUsuario)comboBox1.SelectedItem).Id;
 
-                    context.Usuarios.Add(lUsuario);
-                    context.SaveChanges();
-                    MessageBox.Show("Usuario generado con exito", "Exito", MessageBoxButtons.OK);
+                        lUsuario.TipoUser_Id = lIdTipo;
+
+                        context.Usuarios.Add(lUsuario);
+                        context.SaveChanges();
+                        MessageBox.Show("Usuario generado con exito", "Exito", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo agregar el usuario porque ya existe con ese nombre", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    
                 }
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show("Autenticacion Invalida, vuelvalo a intentar", "Error de Autenticacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Excepcion no manejada...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw ex;
                 }
                 finally

@@ -80,8 +80,8 @@ namespace LasCarasDeHeraldo
                     try
                     {
                         var lResultado = from rec in context.Reclamos
-                                         where (rec.UsuariosAdherentes.Contains(this.User)
-                                                || rec.Usuario == this.User) && rec.Id == lCod
+                                         where ((rec.Emisor == this.User.Id)  &&   rec.Id == lCod)
+                                                // (rec.UsuariosAdherentes.Contains(this.User)  ||
                                          select rec;
 
                         Reclamo lReclamo = lResultado.FirstOrDefault<Reclamo>();
@@ -89,7 +89,7 @@ namespace LasCarasDeHeraldo
                         if (lReclamo != null)
                         {
                             List<Historico> lHistoricos = lReclamo.Historicos.ToList<Historico>();
-                            lHistoricos.Sort((x, y) => y.CompareTo(x));
+                            lHistoricos.Sort((x, y) => DateTime.Compare(y.FechaHora,x.FechaHora));
                             Historico lUltimoHistorico = lHistoricos.FirstOrDefault<Historico>();
 
                             if (lUltimoHistorico != null && lUltimoHistorico.Estado.Nombre == "Terminado")
@@ -98,8 +98,8 @@ namespace LasCarasDeHeraldo
                             }
 
                             var bindingList = new BindingList<Historico>(lHistoricos);
-                            var source = new BindingSource(bindingList, null);
-                            dataGridView1.DataSource = source;
+                          //  var source = new BindingSource(bindingList, null);
+                            dataGridView1.DataSource = bindingList;
 
                             // lHistoricos.
                         }

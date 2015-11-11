@@ -24,10 +24,5 @@ namespace LasCarasDeHeraldo
         public virtual Area Area { get; set; }
         public virtual Estado Estado { get; set; }
         public virtual Reclamo Reclamo { get; set; }
-
-        public int CompareTo(Historico otro)
-        {
-            return DateTime.Compare(this.FechaHora, otro.FechaHora);
-        }
     }
 }

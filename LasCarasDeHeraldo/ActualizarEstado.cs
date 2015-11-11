@@ -49,9 +49,9 @@ namespace LasCarasDeHeraldo
                 try
                 {
                     this.listaReclamos = new BindingList<Reclamo>(context.Reclamos.ToList<Reclamo>());
-                    comboEstado.ValueMember = "Id";
-                    comboEstado.DisplayMember = "Id";
-                    comboEstado.DataSource = listaReclamos;
+                    comboReclamo.ValueMember = "Id";
+                    comboReclamo.DisplayMember = "Id";
+                    comboReclamo.DataSource = listaReclamos;
                 }
                 catch (Exception ex)
                 {
@@ -62,6 +62,38 @@ namespace LasCarasDeHeraldo
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            using (var context = new ReclamoEntities())
+            {
+                try
+                {
+                    this.listaReclamos = new BindingList<Reclamo>(context.Reclamos.ToList<Reclamo>());
+                    comboReclamo.ValueMember = "Id";
+                    comboReclamo.DisplayMember = "Id";
+                    comboReclamo.DataSource = listaReclamos;
+
+                    int lIdReclamo = ((Reclamo) this.comboReclamo.SelectedItem).Id;
+                    int lIdEstado = ((Estado)this.comboEstado.SelectedItem).Id;
+                    int lIdArea = 5;
+
+
+                    Historico lHistorico = new Historico() { Comentario = this.richTextBox1.Text, FechaHora = DateTime.Now, Reclamo_Id = lIdReclamo, Estado_Id = lIdEstado, Area_Id = lIdArea };
+
+                    context.Historicos.Add(lHistorico);
+                    context.SaveChanges();
+
+                    MessageBox.Show("Reclamo guardado correctamente", "Exito", MessageBoxButtons.OK);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Excepcion no manejada...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw ex;
+                }
+            }
+        }
+
+        private void comboReclamo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

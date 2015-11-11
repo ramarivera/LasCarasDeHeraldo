@@ -30,11 +30,21 @@ namespace LasCarasDeHeraldo
             {
                 try
                 {
+                    context.Usuarios.Attach(this.User);
                     List<Usuario> lLista = new List<Usuario>() { this.User };
-                    Reclamo lReclamo = new Reclamo() { Titulo = textBox1.Text, Comentario = richTextBox1.Text, Usuario = this.User, UsuariosAdherentes=lLista };
+                    Reclamo lReclamo = new Reclamo() { Titulo = textBox1.Text, Comentario = richTextBox1.Text, Usuario = this.User, UsuariosAdherentes=lLista};
                     context.Reclamos.Add(lReclamo);
                     context.SaveChanges();
+
+                    Estado lEstado = context.Estados.Where(es => es.Nombre == "Abierto").FirstOrDefault<Estado>();
+                    Historico lHistorico = new Historico() { Comentario = "Apertura de Reclamo", FechaHora = DateTime.Now, Reclamo_Id = lReclamo.Id, Estado_Id = lEstado.Id, Area_Id=5 };
+
+                    context.Historicos.Add(lHistorico);
+                    context.SaveChanges();
+
                     MessageBox.Show("Reclamo guardado correctamente","Exito",MessageBoxButtons.OK);
+                    this.Close();
+
                 }
                 catch (Exception ex)
                 {

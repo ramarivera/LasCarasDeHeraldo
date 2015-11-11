@@ -24,12 +24,12 @@ namespace LasCarasDeHeraldo
         public int Id { get; set; }
         public string Comentario { get; set; }
         public string Titulo { get; set; }
-        public int Adherentes_Id { get; set; }
+        public int Emisor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Historico> Historicos { get; set; }
-        public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuario> UsuariosAdherentes { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

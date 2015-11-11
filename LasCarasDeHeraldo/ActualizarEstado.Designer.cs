@@ -80,6 +80,7 @@
             this.comboReclamo.Name = "comboReclamo";
             this.comboReclamo.Size = new System.Drawing.Size(121, 21);
             this.comboReclamo.TabIndex = 4;
+            this.comboReclamo.SelectedIndexChanged += new System.EventHandler(this.comboReclamo_SelectedIndexChanged);
             // 
             // label2
             // 

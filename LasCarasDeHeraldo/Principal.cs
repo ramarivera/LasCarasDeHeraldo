@@ -16,6 +16,21 @@ namespace LasCarasDeHeraldo
         public Principal()
         {
             InitializeComponent();
+            Shown += Principal_Shown;
+        }
+
+        private void Principal_Shown(object sender, EventArgs e)
+        {
+            this.ConfigurarControles();
+        }
+
+        private void ConfigurarControles()
+        {
+            if (this.User.TipoUsuario.Nombre == "User")
+            {
+                gestionToolStripMenuItem.Visible = false;
+                buscarToolStripMenuItem.Visible = false; 
+            }
         }
 
         private void darDeAltaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,6 +79,12 @@ namespace LasCarasDeHeraldo
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Salir();   
+        }
+
+        private void actualizarEstadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var lAct = new ActualizarEstado();
+            lAct.ShowDialog();
         }
     }
 }

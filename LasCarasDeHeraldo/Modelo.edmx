@@ -37,7 +37,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Comentario" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Titulo" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Adherentes_Id" Type="int" Nullable="false" />
+          <Property Name="Emisor" Type="int" Nullable="false" StoreGeneratedPattern="None" />
         </EntityType>
         <EntityType Name="ReclamoUsuario">
           <Key>
@@ -143,7 +143,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Reclamo">
-              <PropertyRef Name="Adherentes_Id" />
+              <PropertyRef Name="Emisor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -238,10 +238,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Titulo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Adherentes_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Historicos" Relationship="Self.FK_ReclamoHistorico" FromRole="Reclamo" ToRole="Historico" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK_ReclamoUsuario1" FromRole="Reclamo" ToRole="Usuario" />
           <NavigationProperty Name="UsuariosAdherentes" Relationship="Self.ReclamoUsuario" FromRole="Reclamo" ToRole="Usuario" />
+          <Property Name="Emisor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Usuario" Relationship="ReclamosModel.FK_ReclamoUsuario11" FromRole="Reclamo" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -269,7 +269,6 @@
           <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TipoUser_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Reclamos" Relationship="Self.FK_ReclamoUsuario1" FromRole="Usuario" ToRole="Reclamo" />
           <NavigationProperty Name="TipoUsuario" Relationship="Self.FK_UsuarioTipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
           <NavigationProperty Name="ReclamosAdheridos" Relationship="Self.ReclamoUsuario" FromRole="Usuario" ToRole="Reclamo" />
           <Property Name="Contraseña" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" Nullable="false" />
@@ -311,18 +310,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReclamoUsuario1">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Reclamo">
-              <PropertyRef Name="Adherentes_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UsuarioTipoUsuario">
           <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -359,10 +346,6 @@
             <End Role="Reclamo" EntitySet="Reclamoes" />
             <End Role="Historico" EntitySet="Historicoes" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReclamoUsuario1" Association="Self.FK_ReclamoUsuario1">
-            <End Role="Usuario" EntitySet="Usuarios" />
-            <End Role="Reclamo" EntitySet="Reclamoes" />
-          </AssociationSet>
           <AssociationSet Name="FK_UsuarioTipoUsuario" Association="Self.FK_UsuarioTipoUsuario">
             <End Role="TipoUsuario" EntitySet="TipoUsuarios" />
             <End Role="Usuario" EntitySet="Usuarios" />
@@ -371,7 +354,23 @@
             <End Role="Reclamo" EntitySet="Reclamoes" />
             <End Role="Usuario" EntitySet="Usuarios" />
           </AssociationSet>
+          <AssociationSet Name="FK_ReclamoUsuario11" Association="ReclamosModel.FK_ReclamoUsuario11">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Reclamo" EntitySet="Reclamoes" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_ReclamoUsuario11">
+          <End Type="ReclamosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="ReclamosModel.Reclamo" Role="Reclamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reclamo">
+              <PropertyRef Name="Emisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -409,10 +408,10 @@
           <EntitySetMapping Name="Reclamoes">
             <EntityTypeMapping TypeName="ReclamosModel.Reclamo">
               <MappingFragment StoreEntitySet="Reclamo">
+                <ScalarProperty Name="Emisor" ColumnName="Emisor" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
                 <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Adherentes_Id" ColumnName="Adherentes_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

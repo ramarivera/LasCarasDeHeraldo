@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace LasCarasDeHeraldo
 {
     public partial class Login : Form
@@ -47,7 +48,7 @@ namespace LasCarasDeHeraldo
                     String lUsuarioIngresado = this.textBox2.Text;
                     String lContraseña = this.textBox1.Text;
 
-                    Usuario lUsuario = context.Usuarios.Where(us => us.NombreUsuario == lUsuarioIngresado).FirstOrDefault<Usuario>();
+                    Usuario lUsuario = context.Usuarios.Include("TipoUsuario").Where(us => us.NombreUsuario == lUsuarioIngresado).FirstOrDefault<Usuario>();
 
                     if (lUsuario != null && lUsuario.Contraseña == lContraseña)
                     {
@@ -65,7 +66,7 @@ namespace LasCarasDeHeraldo
                 catch (Exception ex )
                 {
 
-                    MessageBox.Show("5 manejada...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Excepcion no manejada...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw ex;
                 }
                 
