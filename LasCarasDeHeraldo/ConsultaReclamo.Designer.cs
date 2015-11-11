@@ -224,6 +224,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(514, 608);
+            this.MinimumSize = new System.Drawing.Size(514, 608);
             this.Name = "ConsultaReclamo";
             this.Text = "Consulta Reclamo";
             this.Load += new System.EventHandler(this.ConsultaReclamo_Load);

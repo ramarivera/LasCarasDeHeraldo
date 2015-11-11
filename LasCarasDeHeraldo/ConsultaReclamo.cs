@@ -39,6 +39,11 @@ namespace LasCarasDeHeraldo
 
         private void ConsultaReclamo_Shown(object sender, EventArgs e)
         {
+            this.DesactivarComentario();
+        }
+
+        private void DesactivarComentario()
+        {
             this.CambiarTamaño(514, 404);
         }
 
@@ -83,6 +88,7 @@ namespace LasCarasDeHeraldo
 
         private void button3_Click(object sender, EventArgs e)
         {
+            this.DesactivarComentario();
             int lCod = 0;
             if (!int.TryParse(this.textBusqueda.Text, out lCod))
             {
@@ -115,7 +121,7 @@ namespace LasCarasDeHeraldo
                             if (lUltimoHistorico != null && lUltimoHistorico.Estado.Nombre == "Terminado")
                             {
                                 string lCadena = "Su reclamo se encuentra en estado Terminado. Nos ayudaria mucho a mejorar" +
-                                    "si nos comentara como considero la gestion del reclamo. Desea hacerlo?";
+                                    " si nos comentara como considero la gestion del reclamo. Desea hacerlo?";
                                 DialogResult lDiag = MessageBox.Show(lCadena, "Reclamo Terminado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (lDiag==DialogResult.Yes)
                                 {

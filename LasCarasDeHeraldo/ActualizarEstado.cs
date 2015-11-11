@@ -62,7 +62,7 @@ namespace LasCarasDeHeraldo
                 {
                     comboReclamos.ValueMember = "Id";
                     comboReclamos.DisplayMember = "Id";
-                    comboReclamos.DataSource = new BindingList<Reclamo>(context.Reclamos.Include("Historicos.Estado").Include("Historicos.Area").ToList<Reclamo>()); ;
+                    comboReclamos.DataSource = new BindingList<Reclamo>(context.Reclamos.Include("Historicos").Include("Historicos.Estado").Include("Historicos.Area").ToList<Reclamo>()); ;
                 }
                 catch (Exception ex)
                 {
@@ -78,9 +78,7 @@ namespace LasCarasDeHeraldo
             {
                 try
                 {
-                    comboReclamos.ValueMember = "Id";
-                    comboReclamos.DisplayMember = "Id";
-                    comboReclamos.DataSource = new BindingList<Reclamo>(context.Reclamos.ToList<Reclamo>()); ;
+                   
 
                     int lIdReclamo = ((Reclamo) this.comboReclamos.SelectedItem).Id;
                     int lIdEstado = ((Estado)this.comboEstados.SelectedItem).Id;

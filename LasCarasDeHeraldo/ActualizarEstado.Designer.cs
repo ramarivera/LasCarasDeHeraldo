@@ -170,6 +170,8 @@
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(392, 410);
+            this.MinimumSize = new System.Drawing.Size(392, 410);
             this.Name = "ActualizarEstado";
             this.Text = "Actualizar Estado de Reclamo";
             this.ResumeLayout(false);

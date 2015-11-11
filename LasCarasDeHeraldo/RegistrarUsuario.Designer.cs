@@ -164,6 +164,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(364, 297);
+            this.MinimumSize = new System.Drawing.Size(364, 297);
             this.Name = "RegistrarUsuario";
             this.Text = "Registrar Usuario";
             this.Load += new System.EventHandler(this.RegistrarUsuario_Load);
