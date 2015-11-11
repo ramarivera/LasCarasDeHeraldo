@@ -24,34 +24,20 @@ namespace LasCarasDeHeraldo
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
            using (var context = new ReclamoEntities())
             {
-                
-                Usuario usuario = context.Usuarios.ToList<Usuario>().Where(u => u.Id == this.User).FirstOrDefault<Usuario>();
-                
-                //var lista = context.ReclamoSets.ToList<ReclamoSet>();
-                context.Reclamos.Add(new Reclamo() { Titulo = textBox1.Text, Comentario = richTextBox1.Text, Usuario = usuario, Usuarios = new List<Usuario>() { usuario } });
-
-                /* //Perform create operation
-                // context.Students.Add(new Student() { StudentName = "New Student" });
-
-                 //Perform Update operation
-                 Student studentToUpdate = studentList.Where(s => s.StudentName == "student1").FirstOrDefault<Student>();
-                 studentToUpdate.StudentName = "Edited student1";
-
-                 //Perform delete operation
-                 context.Students.Remove(studentList.ElementAt<Student>(0));
-
-                 //Execute Inser, Update & Delete queries in the database*/
                 try
                 {
+                    Usuario usuario = context.Usuarios.ToList<Usuario>().Where(u => u.Id == this.User).FirstOrDefault<Usuario>();
+                    List<Usuario> lLista = new List<Usuario>() { usuario };
+                    Reclamo lReclamo = new Reclamo() { Titulo = textBox1.Text, Comentario = richTextBox1.Text, Usuario = usuario, Usuarios=lLista };
+                    context.Reclamos.Add(lReclamo);
                     context.SaveChanges();
-                    MessageBox.Show("Reclamo guardado correctamente");
+                    MessageBox.Show("Reclamo guardado correctamente","Exito",MessageBoxButtons.OK);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("ENTITY FRAMEWORK Y LA CONCHA DE TU MADREEEEEEEE (NIIIIIILL)");
+                    MessageBox.Show("Excepcion no manejada...");
                     throw ex;
                    //ex.InnerException
                 }

@@ -110,6 +110,12 @@
     <Compile Include="Reclamo.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarUsuario.Designer.cs">
+      <DependentUpon>RegistrarUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagram.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
@@ -140,6 +146,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegistrarUsuario.resx">
+      <DependentUpon>RegistrarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Modelo.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Modelo.Designer.cs</LastGenOutput>
