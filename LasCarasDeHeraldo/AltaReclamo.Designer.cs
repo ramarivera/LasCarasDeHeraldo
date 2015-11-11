@@ -103,10 +103,11 @@
             // 
             // comboAreas
             // 
+            this.comboAreas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.comboAreas.FormattingEnabled = true;
             this.comboAreas.Location = new System.Drawing.Point(180, 285);
             this.comboAreas.Name = "comboAreas";
-            this.comboAreas.Size = new System.Drawing.Size(148, 23);
+            this.comboAreas.Size = new System.Drawing.Size(148, 24);
             this.comboAreas.TabIndex = 6;
             this.comboAreas.SelectedIndexChanged += new System.EventHandler(this.comboAreas_SelectedIndexChanged);
             // 
@@ -124,7 +125,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(14, 288);
+            this.label3.Location = new System.Drawing.Point(14, 289);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(151, 17);
             this.label3.TabIndex = 7;
