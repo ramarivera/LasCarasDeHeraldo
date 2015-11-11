@@ -25,6 +25,8 @@ namespace LasCarasDeHeraldo
         public string Comentario { get; set; }
         public string Titulo { get; set; }
         public int Emisor { get; set; }
+        public int Calificacion { get; set; }
+        public bool Publico { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Historico> Historicos { get; set; }

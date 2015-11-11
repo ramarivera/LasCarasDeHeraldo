@@ -37,7 +37,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Comentario" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Titulo" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Emisor" Type="int" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="Emisor" Type="int" Nullable="false" />
+          <Property Name="Calificacion" Type="int" Nullable="false" />
+          <Property Name="Publico" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ReclamoUsuario">
           <Key>
@@ -242,6 +244,8 @@
           <NavigationProperty Name="UsuariosAdherentes" Relationship="Self.ReclamoUsuario" FromRole="Reclamo" ToRole="Usuario" />
           <Property Name="Emisor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <NavigationProperty Name="Usuario" Relationship="ReclamosModel.FK_ReclamoUsuario11" FromRole="Reclamo" ToRole="Usuario" />
+          <Property Name="Calificacion" Type="Int32" Nullable="false" />
+          <Property Name="Publico" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -408,6 +412,8 @@
           <EntitySetMapping Name="Reclamoes">
             <EntityTypeMapping TypeName="ReclamosModel.Reclamo">
               <MappingFragment StoreEntitySet="Reclamo">
+                <ScalarProperty Name="Publico" ColumnName="Publico" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
                 <ScalarProperty Name="Emisor" ColumnName="Emisor" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />

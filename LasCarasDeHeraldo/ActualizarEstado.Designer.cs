@@ -71,6 +71,7 @@
             this.comboEstado.Name = "comboEstado";
             this.comboEstado.Size = new System.Drawing.Size(121, 21);
             this.comboEstado.TabIndex = 3;
+            this.comboEstado.SelectedIndexChanged += new System.EventHandler(this.comboEstado_SelectedIndexChanged);
             // 
             // comboReclamo
             // 
