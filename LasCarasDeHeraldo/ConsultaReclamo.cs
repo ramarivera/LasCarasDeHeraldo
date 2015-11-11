@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace LasCarasDeHeraldo
         {
             InitializeComponent();
             Shown += ConsultaReclamo_Shown;
+            this.AcceptButton = this.buttonBuscar;
         }
 
         private void ConsultaReclamo_Load(object sender, EventArgs e)
@@ -65,6 +67,19 @@ namespace LasCarasDeHeraldo
             this.CambiarTamaño(514, 608);
         }
 
+
+        private void ConfigurarDataGrid()
+        {
+            dataGridView1.RowHeadersVisible = false;
+            DataGridViewColumnCollection columnas = dataGridView1.Columns;
+            columnas["Fecha"].Width = 121;
+            columnas["Estado"].Width = 53;
+            columnas["Area"].Width = 73;
+            columnas["Comentario"].Width = 203;
+
+        }
+
+
         private void button3_Click(object sender, EventArgs e)
         {
             int lCod = 0;
@@ -97,11 +112,13 @@ namespace LasCarasDeHeraldo
                                 this.ActivarComentario();
                             }
                             var listaAnonima = lHistoricos.Select(his => new
-                                { Codigo = his.Id, Fecha = his.FechaHora, Estado = his.Estado.Nombre, Area = his.Area.Nombre, Comentario = his.Comentario }).ToList().ToBindingList();
+                                {Fecha = his.FechaHora, Estado = his.Estado.Nombre, Area = his.Area.Nombre, Comentario = his.Comentario }).ToList().ToBindingList();
 
                             //var bindingList = new BindingList<Object>(listaAnonima);
                             //  var source = new BindingSource(bindingList, null);
                             dataGridView1.DataSource = listaAnonima;
+                            ConfigurarDataGrid();
+
 
                             // lHistoricos.
                         }
@@ -121,6 +138,11 @@ namespace LasCarasDeHeraldo
 
                 }
             }
+        }
+
+        private void buttonAceptar_Click(object sender, EventArgs e)
+        {
+            Debugger.Break();
         }
     }
 }

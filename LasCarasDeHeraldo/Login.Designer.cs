@@ -100,6 +100,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(119, 107);
             this.textBox1.Name = "textBox1";
+            this.textBox1.PasswordChar = '*';
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 1;
             // 
@@ -123,6 +124,8 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(337, 292);
+            this.MinimumSize = new System.Drawing.Size(337, 292);
             this.Name = "Login";
             this.Text = "Gestion de Reclamos - Autenticacion";
             this.Load += new System.EventHandler(this.Login_Load);

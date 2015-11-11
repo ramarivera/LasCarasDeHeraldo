@@ -97,5 +97,12 @@ namespace LasCarasDeHeraldo
         {
 
         }
+
+        private void ComboReclamoFormat(object sender, ListControlConvertEventArgs e)
+        {
+            int cod = ((Reclamo)e.ListItem).Id;
+            string titulo = ((Reclamo)e.ListItem).Titulo;
+            e.Value = cod.ToString("D4") + "-" + titulo;
+        }
     }
 }
