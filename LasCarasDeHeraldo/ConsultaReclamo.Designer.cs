@@ -62,7 +62,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(33, 118);
+            this.label2.Location = new System.Drawing.Point(33, 120);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 17);
             this.label2.TabIndex = 1;
@@ -77,7 +77,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(23, 159);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(453, 140);
-            this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // richTextBox1
@@ -94,7 +94,7 @@
             this.buttonAceptar.Location = new System.Drawing.Point(206, 316);
             this.buttonAceptar.Name = "buttonAceptar";
             this.buttonAceptar.Size = new System.Drawing.Size(85, 27);
-            this.buttonAceptar.TabIndex = 5;
+            this.buttonAceptar.TabIndex = 3;
             this.buttonAceptar.Text = "Aceptar";
             this.buttonAceptar.UseVisualStyleBackColor = true;
             this.buttonAceptar.Click += new System.EventHandler(this.buttonAceptar_Click);
@@ -142,7 +142,7 @@
             this.buttonBuscar.Location = new System.Drawing.Point(330, 29);
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(69, 28);
-            this.buttonBuscar.TabIndex = 10;
+            this.buttonBuscar.TabIndex = 1;
             this.buttonBuscar.Text = "Buscar";
             this.buttonBuscar.UseVisualStyleBackColor = true;
             this.buttonBuscar.Click += new System.EventHandler(this.button3_Click);
@@ -162,7 +162,7 @@
             this.textBusqueda.Location = new System.Drawing.Point(180, 30);
             this.textBusqueda.Name = "textBusqueda";
             this.textBusqueda.Size = new System.Drawing.Size(100, 20);
-            this.textBusqueda.TabIndex = 12;
+            this.textBusqueda.TabIndex = 0;
             // 
             // textUsuario
             // 
@@ -176,7 +176,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(268, 119);
+            this.label5.Location = new System.Drawing.Point(268, 120);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 17);
             this.label5.TabIndex = 13;
@@ -185,11 +185,12 @@
             // 
             // comboConformidad
             // 
+            this.comboConformidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.comboConformidad.FormattingEnabled = true;
-            this.comboConformidad.Location = new System.Drawing.Point(114, 535);
+            this.comboConformidad.Location = new System.Drawing.Point(114, 532);
             this.comboConformidad.Name = "comboConformidad";
-            this.comboConformidad.Size = new System.Drawing.Size(50, 21);
-            this.comboConformidad.TabIndex = 15;
+            this.comboConformidad.Size = new System.Drawing.Size(50, 24);
+            this.comboConformidad.TabIndex = 5;
             // 
             // label7
             // 
