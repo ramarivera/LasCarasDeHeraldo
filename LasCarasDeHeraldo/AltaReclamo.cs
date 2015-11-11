@@ -24,13 +24,14 @@ namespace LasCarasDeHeraldo
 
         private void button1_Click(object sender, EventArgs e)
         {
-           using (var context = new ReclamosEntities())
+           
+           using (var context = new ReclamoEntities())
             {
-
-                UsuarioSet usuario = context.UsuarioSets.ToList<UsuarioSet>().Where(u => u.Id == this.User).FirstOrDefault<UsuarioSet>();
-
+                
+                Usuario usuario = context.Usuarios.ToList<Usuario>().Where(u => u.Id == this.User).FirstOrDefault<Usuario>();
+                
                 //var lista = context.ReclamoSets.ToList<ReclamoSet>();
-                context.ReclamoSets.Add(new ReclamoSet() { Titulo = textBox1.Text, Comentario = richTextBox1.Text, UsuarioSet = usuario, UsuarioSets = new List<UsuarioSet>() { usuario } });
+                context.Reclamos.Add(new Reclamo() { Titulo = textBox1.Text, Comentario = richTextBox1.Text, Usuario = usuario, Usuarios = new List<Usuario>() { usuario } });
 
                 /* //Perform create operation
                 // context.Students.Add(new Student() { StudentName = "New Student" });

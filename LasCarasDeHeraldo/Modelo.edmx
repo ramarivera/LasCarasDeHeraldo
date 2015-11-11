@@ -5,21 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="ReclamosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AreaSet">
+        <EntityType Name="Area">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="EstadoSet">
+        <EntityType Name="Estado">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="HistoricoSet">
+        <EntityType Name="Historico">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -29,7 +29,7 @@
           <Property Name="Estado_Id" Type="int" Nullable="false" />
           <Property Name="Area_Id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="ReclamoSet">
+        <EntityType Name="Reclamo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -46,14 +46,24 @@
           <Property Name="ReclamoUsuario_Usuario_Id" Type="int" Nullable="false" />
           <Property Name="Usuario_Id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="TipoUsuarioSet">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="UsuarioSet">
+        <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -64,46 +74,46 @@
           <Property Name="TipoUser_Id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_HistoricoArea">
-          <End Role="AreaSet" Type="Self.AreaSet" Multiplicity="1" />
-          <End Role="HistoricoSet" Type="Self.HistoricoSet" Multiplicity="*" />
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AreaSet">
+            <Principal Role="Area">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="HistoricoSet">
+            <Dependent Role="Historico">
               <PropertyRef Name="Area_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HistoricoEstado">
-          <End Role="EstadoSet" Type="Self.EstadoSet" Multiplicity="1" />
-          <End Role="HistoricoSet" Type="Self.HistoricoSet" Multiplicity="*" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EstadoSet">
+            <Principal Role="Estado">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="HistoricoSet">
+            <Dependent Role="Historico">
               <PropertyRef Name="Estado_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ReclamoHistorico">
-          <End Role="ReclamoSet" Type="Self.ReclamoSet" Multiplicity="1" />
-          <End Role="HistoricoSet" Type="Self.HistoricoSet" Multiplicity="*" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="1" />
+          <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ReclamoSet">
+            <Principal Role="Reclamo">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="HistoricoSet">
+            <Dependent Role="Historico">
               <PropertyRef Name="Reclamo_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ReclamoUsuario_Reclamo">
-          <End Role="ReclamoSet" Type="Self.ReclamoSet" Multiplicity="1" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="1" />
           <End Role="ReclamoUsuario" Type="Self.ReclamoUsuario" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ReclamoSet">
+            <Principal Role="Reclamo">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ReclamoUsuario">
@@ -112,10 +122,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ReclamoUsuario_Usuario">
-          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="ReclamoUsuario" Type="Self.ReclamoUsuario" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UsuarioSet">
+            <Principal Role="Usuario">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ReclamoUsuario">
@@ -124,64 +134,65 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ReclamoUsuario1">
-          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="1" />
-          <End Role="ReclamoSet" Type="Self.ReclamoSet" Multiplicity="*" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UsuarioSet">
+            <Principal Role="Usuario">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ReclamoSet">
+            <Dependent Role="Reclamo">
               <PropertyRef Name="Adherentes_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsuarioTipoUsuario">
-          <End Role="TipoUsuarioSet" Type="Self.TipoUsuarioSet" Multiplicity="1" />
-          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="*" />
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TipoUsuarioSet">
+            <Principal Role="TipoUsuario">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="UsuarioSet">
+            <Dependent Role="Usuario">
               <PropertyRef Name="TipoUser_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ReclamosModelStoreContainer">
-          <EntitySet Name="AreaSet" EntityType="Self.AreaSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EstadoSet" EntityType="Self.EstadoSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HistoricoSet" EntityType="Self.HistoricoSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ReclamoSet" EntityType="Self.ReclamoSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historico" EntityType="Self.Historico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reclamo" EntityType="Self.Reclamo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReclamoUsuario" EntityType="Self.ReclamoUsuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TipoUsuarioSet" EntityType="Self.TipoUsuarioSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UsuarioSet" EntityType="Self.UsuarioSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_HistoricoArea" Association="Self.FK_HistoricoArea">
-            <End Role="AreaSet" EntitySet="AreaSet" />
-            <End Role="HistoricoSet" EntitySet="HistoricoSet" />
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Historico" EntitySet="Historico" />
           </AssociationSet>
           <AssociationSet Name="FK_HistoricoEstado" Association="Self.FK_HistoricoEstado">
-            <End Role="EstadoSet" EntitySet="EstadoSet" />
-            <End Role="HistoricoSet" EntitySet="HistoricoSet" />
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Historico" EntitySet="Historico" />
           </AssociationSet>
           <AssociationSet Name="FK_ReclamoHistorico" Association="Self.FK_ReclamoHistorico">
-            <End Role="ReclamoSet" EntitySet="ReclamoSet" />
-            <End Role="HistoricoSet" EntitySet="HistoricoSet" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
+            <End Role="Historico" EntitySet="Historico" />
           </AssociationSet>
           <AssociationSet Name="FK_ReclamoUsuario_Reclamo" Association="Self.FK_ReclamoUsuario_Reclamo">
-            <End Role="ReclamoSet" EntitySet="ReclamoSet" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
             <End Role="ReclamoUsuario" EntitySet="ReclamoUsuario" />
           </AssociationSet>
           <AssociationSet Name="FK_ReclamoUsuario_Usuario" Association="Self.FK_ReclamoUsuario_Usuario">
-            <End Role="UsuarioSet" EntitySet="UsuarioSet" />
+            <End Role="Usuario" EntitySet="Usuario" />
             <End Role="ReclamoUsuario" EntitySet="ReclamoUsuario" />
           </AssociationSet>
           <AssociationSet Name="FK_ReclamoUsuario1" Association="Self.FK_ReclamoUsuario1">
-            <End Role="UsuarioSet" EntitySet="UsuarioSet" />
-            <End Role="ReclamoSet" EntitySet="ReclamoSet" />
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
           </AssociationSet>
           <AssociationSet Name="FK_UsuarioTipoUsuario" Association="Self.FK_UsuarioTipoUsuario">
-            <End Role="TipoUsuarioSet" EntitySet="TipoUsuarioSet" />
-            <End Role="UsuarioSet" EntitySet="UsuarioSet" />
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -189,23 +200,23 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ReclamosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AreaSet">
+        <EntityType Name="Area">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="HistoricoSets" Relationship="Self.FK_HistoricoArea" FromRole="AreaSet" ToRole="HistoricoSet" />
+          <NavigationProperty Name="Historicoes" Relationship="Self.FK_HistoricoArea" FromRole="Area" ToRole="Historico" />
         </EntityType>
-        <EntityType Name="EstadoSet">
+        <EntityType Name="Estado">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="HistoricoSets" Relationship="Self.FK_HistoricoEstado" FromRole="EstadoSet" ToRole="HistoricoSet" />
+          <NavigationProperty Name="Historicoes" Relationship="Self.FK_HistoricoEstado" FromRole="Estado" ToRole="Historico" />
         </EntityType>
-        <EntityType Name="HistoricoSet">
+        <EntityType Name="Historico">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -214,11 +225,11 @@
           <Property Name="Reclamo_Id" Type="Int32" Nullable="false" />
           <Property Name="Estado_Id" Type="Int32" Nullable="false" />
           <Property Name="Area_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AreaSet" Relationship="Self.FK_HistoricoArea" FromRole="HistoricoSet" ToRole="AreaSet" />
-          <NavigationProperty Name="EstadoSet" Relationship="Self.FK_HistoricoEstado" FromRole="HistoricoSet" ToRole="EstadoSet" />
-          <NavigationProperty Name="ReclamoSet" Relationship="Self.FK_ReclamoHistorico" FromRole="HistoricoSet" ToRole="ReclamoSet" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_HistoricoArea" FromRole="Historico" ToRole="Area" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK_HistoricoEstado" FromRole="Historico" ToRole="Estado" />
+          <NavigationProperty Name="Reclamo" Relationship="Self.FK_ReclamoHistorico" FromRole="Historico" ToRole="Reclamo" />
         </EntityType>
-        <EntityType Name="ReclamoSet">
+        <EntityType Name="Reclamo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -226,19 +237,29 @@
           <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Titulo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Adherentes_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="HistoricoSets" Relationship="Self.FK_ReclamoHistorico" FromRole="ReclamoSet" ToRole="HistoricoSet" />
-          <NavigationProperty Name="UsuarioSet" Relationship="Self.FK_ReclamoUsuario1" FromRole="ReclamoSet" ToRole="UsuarioSet" />
-          <NavigationProperty Name="UsuarioSets" Relationship="Self.ReclamoUsuario" FromRole="ReclamoSet" ToRole="UsuarioSet" />
+          <NavigationProperty Name="Historicoes" Relationship="Self.FK_ReclamoHistorico" FromRole="Reclamo" ToRole="Historico" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_ReclamoUsuario1" FromRole="Reclamo" ToRole="Usuario" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.ReclamoUsuario" FromRole="Reclamo" ToRole="Usuario" />
         </EntityType>
-        <EntityType Name="TipoUsuarioSet">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="UsuarioSets" Relationship="Self.FK_UsuarioTipoUsuario" FromRole="TipoUsuarioSet" ToRole="UsuarioSet" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_UsuarioTipoUsuario" FromRole="TipoUsuario" ToRole="Usuario" />
         </EntityType>
-        <EntityType Name="UsuarioSet">
+        <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -247,104 +268,105 @@
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TipoUsuario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TipoUser_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ReclamoSets" Relationship="Self.FK_ReclamoUsuario1" FromRole="UsuarioSet" ToRole="ReclamoSet" />
-          <NavigationProperty Name="TipoUsuarioSet" Relationship="Self.FK_UsuarioTipoUsuario" FromRole="UsuarioSet" ToRole="TipoUsuarioSet" />
-          <NavigationProperty Name="ReclamoSets1" Relationship="Self.ReclamoUsuario" FromRole="UsuarioSet" ToRole="ReclamoSet" />
+          <NavigationProperty Name="Reclamoes" Relationship="Self.FK_ReclamoUsuario1" FromRole="Usuario" ToRole="Reclamo" />
+          <NavigationProperty Name="TipoUsuario1" Relationship="Self.FK_UsuarioTipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
+          <NavigationProperty Name="Reclamoes1" Relationship="Self.ReclamoUsuario" FromRole="Usuario" ToRole="Reclamo" />
         </EntityType>
         <Association Name="FK_HistoricoArea">
-          <End Role="AreaSet" Type="Self.AreaSet" Multiplicity="1" />
-          <End Role="HistoricoSet" Type="Self.HistoricoSet" Multiplicity="*" />
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AreaSet">
+            <Principal Role="Area">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="HistoricoSet">
+            <Dependent Role="Historico">
               <PropertyRef Name="Area_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HistoricoEstado">
-          <End Role="EstadoSet" Type="Self.EstadoSet" Multiplicity="1" />
-          <End Role="HistoricoSet" Type="Self.HistoricoSet" Multiplicity="*" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EstadoSet">
+            <Principal Role="Estado">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="HistoricoSet">
+            <Dependent Role="Historico">
               <PropertyRef Name="Estado_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ReclamoHistorico">
-          <End Role="ReclamoSet" Type="Self.ReclamoSet" Multiplicity="1" />
-          <End Role="HistoricoSet" Type="Self.HistoricoSet" Multiplicity="*" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="1" />
+          <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ReclamoSet">
+            <Principal Role="Reclamo">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="HistoricoSet">
+            <Dependent Role="Historico">
               <PropertyRef Name="Reclamo_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ReclamoUsuario1">
-          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="1" />
-          <End Role="ReclamoSet" Type="Self.ReclamoSet" Multiplicity="*" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UsuarioSet">
+            <Principal Role="Usuario">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ReclamoSet">
+            <Dependent Role="Reclamo">
               <PropertyRef Name="Adherentes_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsuarioTipoUsuario">
-          <End Role="TipoUsuarioSet" Type="Self.TipoUsuarioSet" Multiplicity="1" />
-          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="*" />
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TipoUsuarioSet">
+            <Principal Role="TipoUsuario">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="UsuarioSet">
+            <Dependent Role="Usuario">
               <PropertyRef Name="TipoUser_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="ReclamoUsuario">
-          <End Role="ReclamoSet" Type="Self.ReclamoSet" Multiplicity="*" />
-          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="*" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="ReclamosEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AreaSets" EntityType="Self.AreaSet" />
-          <EntitySet Name="EstadoSets" EntityType="Self.EstadoSet" />
-          <EntitySet Name="HistoricoSets" EntityType="Self.HistoricoSet" />
-          <EntitySet Name="ReclamoSets" EntityType="Self.ReclamoSet" />
-          <EntitySet Name="TipoUsuarioSets" EntityType="Self.TipoUsuarioSet" />
-          <EntitySet Name="UsuarioSets" EntityType="Self.UsuarioSet" />
+        <EntityContainer Name="ReclamoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Areas" EntityType="Self.Area" />
+          <EntitySet Name="Estadoes" EntityType="Self.Estado" />
+          <EntitySet Name="Historicoes" EntityType="Self.Historico" />
+          <EntitySet Name="Reclamoes" EntityType="Self.Reclamo" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TipoUsuarios" EntityType="Self.TipoUsuario" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_HistoricoArea" Association="Self.FK_HistoricoArea">
-            <End Role="AreaSet" EntitySet="AreaSets" />
-            <End Role="HistoricoSet" EntitySet="HistoricoSets" />
+            <End Role="Area" EntitySet="Areas" />
+            <End Role="Historico" EntitySet="Historicoes" />
           </AssociationSet>
           <AssociationSet Name="FK_HistoricoEstado" Association="Self.FK_HistoricoEstado">
-            <End Role="EstadoSet" EntitySet="EstadoSets" />
-            <End Role="HistoricoSet" EntitySet="HistoricoSets" />
+            <End Role="Estado" EntitySet="Estadoes" />
+            <End Role="Historico" EntitySet="Historicoes" />
           </AssociationSet>
           <AssociationSet Name="FK_ReclamoHistorico" Association="Self.FK_ReclamoHistorico">
-            <End Role="ReclamoSet" EntitySet="ReclamoSets" />
-            <End Role="HistoricoSet" EntitySet="HistoricoSets" />
+            <End Role="Reclamo" EntitySet="Reclamoes" />
+            <End Role="Historico" EntitySet="Historicoes" />
           </AssociationSet>
           <AssociationSet Name="FK_ReclamoUsuario1" Association="Self.FK_ReclamoUsuario1">
-            <End Role="UsuarioSet" EntitySet="UsuarioSets" />
-            <End Role="ReclamoSet" EntitySet="ReclamoSets" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Reclamo" EntitySet="Reclamoes" />
           </AssociationSet>
           <AssociationSet Name="FK_UsuarioTipoUsuario" Association="Self.FK_UsuarioTipoUsuario">
-            <End Role="TipoUsuarioSet" EntitySet="TipoUsuarioSets" />
-            <End Role="UsuarioSet" EntitySet="UsuarioSets" />
+            <End Role="TipoUsuario" EntitySet="TipoUsuarios" />
+            <End Role="Usuario" EntitySet="Usuarios" />
           </AssociationSet>
           <AssociationSet Name="ReclamoUsuario" Association="Self.ReclamoUsuario">
-            <End Role="ReclamoSet" EntitySet="ReclamoSets" />
-            <End Role="UsuarioSet" EntitySet="UsuarioSets" />
+            <End Role="Reclamo" EntitySet="Reclamoes" />
+            <End Role="Usuario" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -352,26 +374,26 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ReclamosModelStoreContainer" CdmEntityContainer="ReclamosEntities">
-          <EntitySetMapping Name="AreaSets">
-            <EntityTypeMapping TypeName="ReclamosModel.AreaSet">
-              <MappingFragment StoreEntitySet="AreaSet">
+        <EntityContainerMapping StorageEntityContainer="ReclamosModelStoreContainer" CdmEntityContainer="ReclamoEntities">
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="ReclamosModel.Area">
+              <MappingFragment StoreEntitySet="Area">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EstadoSets">
-            <EntityTypeMapping TypeName="ReclamosModel.EstadoSet">
-              <MappingFragment StoreEntitySet="EstadoSet">
+          <EntitySetMapping Name="Estadoes">
+            <EntityTypeMapping TypeName="ReclamosModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HistoricoSets">
-            <EntityTypeMapping TypeName="ReclamosModel.HistoricoSet">
-              <MappingFragment StoreEntitySet="HistoricoSet">
+          <EntitySetMapping Name="Historicoes">
+            <EntityTypeMapping TypeName="ReclamosModel.Historico">
+              <MappingFragment StoreEntitySet="Historico">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
                 <ScalarProperty Name="Reclamo_Id" ColumnName="Reclamo_Id" />
@@ -380,9 +402,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ReclamoSets">
-            <EntityTypeMapping TypeName="ReclamosModel.ReclamoSet">
-              <MappingFragment StoreEntitySet="ReclamoSet">
+          <EntitySetMapping Name="Reclamoes">
+            <EntityTypeMapping TypeName="ReclamosModel.Reclamo">
+              <MappingFragment StoreEntitySet="Reclamo">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
                 <ScalarProperty Name="Titulo" ColumnName="Titulo" />
@@ -390,17 +412,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TipoUsuarioSets">
-            <EntityTypeMapping TypeName="ReclamosModel.TipoUsuarioSet">
-              <MappingFragment StoreEntitySet="TipoUsuarioSet">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ReclamosModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoUsuarios">
+            <EntityTypeMapping TypeName="ReclamosModel.TipoUsuario">
+              <MappingFragment StoreEntitySet="TipoUsuario">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UsuarioSets">
-            <EntityTypeMapping TypeName="ReclamosModel.UsuarioSet">
-              <MappingFragment StoreEntitySet="UsuarioSet">
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="ReclamosModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -410,10 +443,10 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="ReclamoUsuario" TypeName="ReclamosModel.ReclamoUsuario" StoreEntitySet="ReclamoUsuario">
-            <EndProperty Name="ReclamoSet">
+            <EndProperty Name="Reclamo">
               <ScalarProperty Name="Id" ColumnName="ReclamoUsuario_Usuario_Id" />
             </EndProperty>
-            <EndProperty Name="UsuarioSet">
+            <EndProperty Name="Usuario">
               <ScalarProperty Name="Id" ColumnName="Usuario_Id" />
             </EndProperty>
           </AssociationSetMapping>

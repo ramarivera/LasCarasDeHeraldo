@@ -13,10 +13,10 @@ namespace LasCarasDeHeraldo
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ReclamosEntities : DbContext
+    public partial class ReclamoEntities : DbContext
     {
-        public ReclamosEntities()
-            : base("name=ReclamosEntities")
+        public ReclamoEntities()
+            : base("name=ReclamoEntities")
         {
         }
     
@@ -25,11 +25,12 @@ namespace LasCarasDeHeraldo
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AreaSet> AreaSets { get; set; }
-        public virtual DbSet<EstadoSet> EstadoSets { get; set; }
-        public virtual DbSet<HistoricoSet> HistoricoSets { get; set; }
-        public virtual DbSet<ReclamoSet> ReclamoSets { get; set; }
-        public virtual DbSet<TipoUsuarioSet> TipoUsuarioSets { get; set; }
-        public virtual DbSet<UsuarioSet> UsuarioSets { get; set; }
+        public virtual DbSet<Area> Areas { get; set; }
+        public virtual DbSet<Estado> Estados { get; set; }
+        public virtual DbSet<Historico> Historicos { get; set; }
+        public virtual DbSet<Reclamo> Reclamos { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
     }
 }

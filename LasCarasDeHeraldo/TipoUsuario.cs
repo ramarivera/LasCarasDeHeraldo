@@ -12,16 +12,18 @@ namespace LasCarasDeHeraldo
     using System;
     using System.Collections.Generic;
     
-    public partial class HistoricoSet
+    public partial class TipoUsuario
     {
-        public int Id { get; set; }
-        public string Comentario { get; set; }
-        public int Reclamo_Id { get; set; }
-        public int Estado_Id { get; set; }
-        public int Area_Id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TipoUsuario()
+        {
+            this.Usuarios = new HashSet<Usuario>();
+        }
     
-        public virtual AreaSet AreaSet { get; set; }
-        public virtual EstadoSet EstadoSet { get; set; }
-        public virtual ReclamoSet ReclamoSet { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }
