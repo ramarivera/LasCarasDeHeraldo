@@ -12,9 +12,26 @@ namespace LasCarasDeHeraldo
 {
     public partial class RegistrarUsuario : Form
     {
+        private readonly BindingList<TipoUsuario> listaTipos = new BindingList<TipoUsuario>();
+
         public RegistrarUsuario()
         {
             InitializeComponent();
+            using (var context = new ReclamoEntities())
+            {
+                try
+                {
+                    this.listaTipos = new BindingList<TipoUsuario>(context.TipoUsuarios.ToList<TipoUsuario>());
+                    comboBox1.ValueMember = "Id";
+                    comboBox1.DisplayMember = "Nombre";
+                    comboBox1.DataSource = listaTipos;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Excepcion no manejada...");
+                    throw ex;
+                }
+            }
             
         }
 
@@ -24,26 +41,7 @@ namespace LasCarasDeHeraldo
             {
                 this.label5.Hide();
                 this.comboBox1.Hide();
-            }
-            else
-            {
-                using (var context = new ReclamoEntities())
-                {
-                    try
-                    {
-                        List<TipoUsuario> lLista = context.TipoUsuarios.ToList<TipoUsuario>();
-                        foreach (var tipo in lLista)
-                        {
-                            this.comboBox1.Items.Add(tipo.Nombre);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Excepcion no manejada...");
-                        throw ex;
-                    }
-
-                }
+                this.comboBox1.SelectedIndex = 1;
             }
         }
         
@@ -71,20 +69,63 @@ namespace LasCarasDeHeraldo
 
 
     */
-
+          //  MessageBox.Show(this.textBox1.Text == String.Empty ? "Empty" : "Otra Cosa :(");
             using (var context = new ReclamoEntities())
             {
                 try
                 {
-                    Usuario lUsuario = new Usuario() { Nombre = textBox1.Text, Email = textBox2.Text, };
+                    string lNombre = textBox1.Text;
+                    string lNombreUsuario = textBox4.Text;
+                    string lContraseña = textBox3.Text;
+                    string lCorreo = textBox2.Text;
+
+                    Usuario lUsuario = new Usuario() { Nombre = lNombre, Email = lCorreo, NombreUsuario = lNombreUsuario, Contraseña = lContraseña };
+
+                    int lIdTipo = ((TipoUsuario)comboBox1.SelectedItem).Id;
+
+                    lUsuario.TipoUser_Id = lIdTipo;
+
+                    context.Usuarios.Add(lUsuario);
+                    context.SaveChanges();
+                    MessageBox.Show("Usuario generado con exito", "Exito", MessageBoxButtons.OK);
                 }
                 catch (Exception ex)
                 {
+
                     MessageBox.Show("Excepcion no manejada...");
                     throw ex;
                 }
+                finally
+                {
+                    this.Close();
+                }
 
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RegistrarUsuario_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

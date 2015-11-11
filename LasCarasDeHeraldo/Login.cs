@@ -29,12 +29,19 @@ namespace LasCarasDeHeraldo
 
         private void button1_Click(object sender, EventArgs e)
         {
+            using (var context = new ReclamoEntities())
+            {
+                String lUsuarioIngresado = this.textBox2.Text;
+                String lContraseña = this.textBox1.Text;
+                /*List <Usuario> lLista = context.Usuarios.Where(us => us.NombreUsuario == lUsuarioIngresado);
+
+                this.Hide();
+                var lPrin = new Principal();
+                lPrin.User = (( == String.Empty) ? 2 : int.Parse(this.textBox1.Text));
+                lPrin.Closed += (s, args) => this.Close();
+                lPrin.Show();*/
+            }
             
-            this.Hide();
-            var lPrin = new Principal();
-            lPrin.User = ((this.textBox1.Text == String.Empty) ? 2 : int.Parse(this.textBox1.Text));
-            lPrin.Closed += (s, args) => this.Close();
-            lPrin.Show();
             
         }
 
