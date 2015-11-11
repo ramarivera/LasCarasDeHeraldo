@@ -81,6 +81,7 @@
     <Compile Include="Estado.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extension.cs" />
     <Compile Include="Historico.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>

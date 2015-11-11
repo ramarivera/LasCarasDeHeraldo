@@ -96,10 +96,12 @@ namespace LasCarasDeHeraldo
                             {
                                 this.ActivarComentario();
                             }
+                            var listaAnonima = lHistoricos.Select(his => new
+                                { Codigo = his.Id, Fecha = his.FechaHora, Estado = his.Estado.Nombre, Area = his.Area.Nombre, Comentario = his.Comentario }).ToList().ToBindingList();
 
-                            var bindingList = new BindingList<Historico>(lHistoricos);
-                          //  var source = new BindingSource(bindingList, null);
-                            dataGridView1.DataSource = bindingList;
+                            //var bindingList = new BindingList<Object>(listaAnonima);
+                            //  var source = new BindingSource(bindingList, null);
+                            dataGridView1.DataSource = listaAnonima;
 
                             // lHistoricos.
                         }
