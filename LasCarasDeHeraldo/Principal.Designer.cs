@@ -64,18 +64,21 @@
             this.gestionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.listarReclamosToolStripMenuItem,
             this.actualizarEstadoToolStripMenuItem});
+            this.gestionToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("gestionToolStripMenuItem.Image")));
             this.gestionToolStripMenuItem.Name = "gestionToolStripMenuItem";
-            this.gestionToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.gestionToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
             this.gestionToolStripMenuItem.Text = "Gestion";
             // 
             // listarReclamosToolStripMenuItem
             // 
+            this.listarReclamosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("listarReclamosToolStripMenuItem.Image")));
             this.listarReclamosToolStripMenuItem.Name = "listarReclamosToolStripMenuItem";
             this.listarReclamosToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.listarReclamosToolStripMenuItem.Text = "Listar Reclamos";
             // 
             // actualizarEstadoToolStripMenuItem
             // 
+            this.actualizarEstadoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("actualizarEstadoToolStripMenuItem.Image")));
             this.actualizarEstadoToolStripMenuItem.Name = "actualizarEstadoToolStripMenuItem";
             this.actualizarEstadoToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.actualizarEstadoToolStripMenuItem.Text = "Actualizar Estado";
@@ -87,12 +90,14 @@
             this.buscarToolStripMenuItem,
             this.darDeAltaToolStripMenuItem,
             this.consultarToolStripMenuItem});
+            this.reclamosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reclamosToolStripMenuItem.Image")));
             this.reclamosToolStripMenuItem.Name = "reclamosToolStripMenuItem";
-            this.reclamosToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.reclamosToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.reclamosToolStripMenuItem.Text = "Reclamos";
             // 
             // buscarToolStripMenuItem
             // 
+            this.buscarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("buscarToolStripMenuItem.Image")));
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
             this.buscarToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.buscarToolStripMenuItem.Text = "Buscar y Filtrar ";
@@ -100,6 +105,7 @@
             // 
             // darDeAltaToolStripMenuItem
             // 
+            this.darDeAltaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("darDeAltaToolStripMenuItem.Image")));
             this.darDeAltaToolStripMenuItem.Name = "darDeAltaToolStripMenuItem";
             this.darDeAltaToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.darDeAltaToolStripMenuItem.Text = "Dar de alta";
@@ -107,6 +113,7 @@
             // 
             // consultarToolStripMenuItem
             // 
+            this.consultarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("consultarToolStripMenuItem.Image")));
             this.consultarToolStripMenuItem.Name = "consultarToolStripMenuItem";
             this.consultarToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.consultarToolStripMenuItem.Text = "Consultar";
@@ -117,20 +124,23 @@
             this.sesionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cambiarClaveToolStripMenuItem,
             this.salirToolStripMenuItem});
+            this.sesionToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sesionToolStripMenuItem.Image")));
             this.sesionToolStripMenuItem.Name = "sesionToolStripMenuItem";
-            this.sesionToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.sesionToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.sesionToolStripMenuItem.Text = "Sesion";
             // 
             // cambiarClaveToolStripMenuItem
             // 
+            this.cambiarClaveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cambiarClaveToolStripMenuItem.Image")));
             this.cambiarClaveToolStripMenuItem.Name = "cambiarClaveToolStripMenuItem";
-            this.cambiarClaveToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.cambiarClaveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cambiarClaveToolStripMenuItem.Text = "Cambiar clave";
             // 
             // salirToolStripMenuItem
             // 
+            this.salirToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("salirToolStripMenuItem.Image")));
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
