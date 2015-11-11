@@ -28,17 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.sesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reclamosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cambiarClaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listarReclamosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reclamosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.darDeAltaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarClaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -49,24 +54,23 @@
             this.sesionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(382, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(422, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // sesionToolStripMenuItem
+            // gestionToolStripMenuItem
             // 
-            this.sesionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cambiarClaveToolStripMenuItem,
-            this.salirToolStripMenuItem});
-            this.sesionToolStripMenuItem.Name = "sesionToolStripMenuItem";
-            this.sesionToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.sesionToolStripMenuItem.Text = "Sesion";
+            this.gestionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listarReclamosToolStripMenuItem});
+            this.gestionToolStripMenuItem.Name = "gestionToolStripMenuItem";
+            this.gestionToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.gestionToolStripMenuItem.Text = "Gestion";
             // 
-            // salirToolStripMenuItem
+            // listarReclamosToolStripMenuItem
             // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.salirToolStripMenuItem.Text = "Salir";
+            this.listarReclamosToolStripMenuItem.Name = "listarReclamosToolStripMenuItem";
+            this.listarReclamosToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.listarReclamosToolStripMenuItem.Text = "Listar Reclamos";
             // 
             // reclamosToolStripMenuItem
             // 
@@ -78,14 +82,6 @@
             this.reclamosToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.reclamosToolStripMenuItem.Text = "Reclamos";
             // 
-            // gestionToolStripMenuItem
-            // 
-            this.gestionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listarReclamosToolStripMenuItem});
-            this.gestionToolStripMenuItem.Name = "gestionToolStripMenuItem";
-            this.gestionToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.gestionToolStripMenuItem.Text = "Gestion";
-            // 
             // buscarToolStripMenuItem
             // 
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
@@ -93,22 +89,10 @@
             this.buscarToolStripMenuItem.Text = "Buscar y Filtrar ";
             this.buscarToolStripMenuItem.Click += new System.EventHandler(this.buscarToolStripMenuItem_Click);
             // 
-            // cambiarClaveToolStripMenuItem
-            // 
-            this.cambiarClaveToolStripMenuItem.Name = "cambiarClaveToolStripMenuItem";
-            this.cambiarClaveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cambiarClaveToolStripMenuItem.Text = "Cambiar clave";
-            // 
-            // listarReclamosToolStripMenuItem
-            // 
-            this.listarReclamosToolStripMenuItem.Name = "listarReclamosToolStripMenuItem";
-            this.listarReclamosToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.listarReclamosToolStripMenuItem.Text = "Listar Reclamos";
-            // 
             // darDeAltaToolStripMenuItem
             // 
             this.darDeAltaToolStripMenuItem.Name = "darDeAltaToolStripMenuItem";
-            this.darDeAltaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.darDeAltaToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.darDeAltaToolStripMenuItem.Text = "Dar de alta";
             this.darDeAltaToolStripMenuItem.Click += new System.EventHandler(this.darDeAltaToolStripMenuItem_Click);
             // 
@@ -119,17 +103,65 @@
             this.consultarToolStripMenuItem.Text = "Consultar";
             this.consultarToolStripMenuItem.Click += new System.EventHandler(this.consultarToolStripMenuItem_Click);
             // 
+            // sesionToolStripMenuItem
+            // 
+            this.sesionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cambiarClaveToolStripMenuItem,
+            this.salirToolStripMenuItem});
+            this.sesionToolStripMenuItem.Name = "sesionToolStripMenuItem";
+            this.sesionToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.sesionToolStripMenuItem.Text = "Sesion";
+            // 
+            // cambiarClaveToolStripMenuItem
+            // 
+            this.cambiarClaveToolStripMenuItem.Name = "cambiarClaveToolStripMenuItem";
+            this.cambiarClaveToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.cambiarClaveToolStripMenuItem.Text = "Cambiar clave";
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.salirToolStripMenuItem.Text = "Salir";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::LasCarasDeHeraldo.Properties.Resources.ramirez;
+            this.pictureBox2.ImageLocation = "";
+            this.pictureBox2.Location = new System.Drawing.Point(0, 27);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(422, 301);
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pictureBox1.Image = global::LasCarasDeHeraldo.Properties.Resources.mcu;
+            this.pictureBox1.Location = new System.Drawing.Point(31, 76);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(180, 85);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 261);
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ClientSize = new System.Drawing.Size(422, 323);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Principal";
-            this.Text = "Principal";
+            this.Text = "Administrador de Reclamos";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,6 +179,8 @@
         private System.Windows.Forms.ToolStripMenuItem cambiarClaveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultarToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
 
         public int User { get; internal set; }
     }

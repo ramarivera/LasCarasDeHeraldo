@@ -35,5 +35,10 @@ namespace LasCarasDeHeraldo
             lCons.User = this.User;
             lCons.ShowDialog();
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
