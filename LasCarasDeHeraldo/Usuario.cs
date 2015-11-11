@@ -17,20 +17,21 @@ namespace LasCarasDeHeraldo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            this.Reclamoes = new HashSet<Reclamo>();
-            this.Reclamoes1 = new HashSet<Reclamo>();
+            this.Reclamos = new HashSet<Reclamo>();
+            this.ReclamosAdheridos = new HashSet<Reclamo>();
         }
     
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Email { get; set; }
-        public string TipoUsuario { get; set; }
         public int TipoUser_Id { get; set; }
+        public string Contraseña { get; set; }
+        public string NombreUsuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reclamo> Reclamoes { get; set; }
-        public virtual TipoUsuario TipoUsuario1 { get; set; }
+        public virtual ICollection<Reclamo> Reclamos { get; set; }
+        public virtual TipoUsuario TipoUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reclamo> Reclamoes1 { get; set; }
+        public virtual ICollection<Reclamo> ReclamosAdheridos { get; set; }
     }
 }

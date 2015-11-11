@@ -30,7 +30,7 @@ namespace LasCarasDeHeraldo
                 {
                     Usuario usuario = context.Usuarios.ToList<Usuario>().Where(u => u.Id == this.User).FirstOrDefault<Usuario>();
                     List<Usuario> lLista = new List<Usuario>() { usuario };
-                    Reclamo lReclamo = new Reclamo() { Titulo = textBox1.Text, Comentario = richTextBox1.Text, Usuario = usuario, Usuarios=lLista };
+                    Reclamo lReclamo = new Reclamo() { Titulo = textBox1.Text, Comentario = richTextBox1.Text, Usuario = usuario, UsuariosAdherentes=lLista };
                     context.Reclamos.Add(lReclamo);
                     context.SaveChanges();
                     MessageBox.Show("Reclamo guardado correctamente","Exito",MessageBoxButtons.OK);

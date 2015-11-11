@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ReclamosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ReclamosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Area">
           <Key>
             <PropertyRef Name="Id" />
@@ -70,8 +70,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="TipoUsuario" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TipoUser_Id" Type="int" Nullable="false" />
+          <Property Name="Contraseña" Type="nvarchar(max)" />
+          <Property Name="NombreUsuario" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_HistoricoArea">
           <End Role="Area" Type="Self.Area" Multiplicity="1" />
@@ -195,8 +196,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ReclamosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -237,9 +237,9 @@
           <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Titulo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Adherentes_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Historicoes" Relationship="Self.FK_ReclamoHistorico" FromRole="Reclamo" ToRole="Historico" />
+          <NavigationProperty Name="Historicos" Relationship="Self.FK_ReclamoHistorico" FromRole="Reclamo" ToRole="Historico" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_ReclamoUsuario1" FromRole="Reclamo" ToRole="Usuario" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.ReclamoUsuario" FromRole="Reclamo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuariosAdherentes" Relationship="Self.ReclamoUsuario" FromRole="Reclamo" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -266,11 +266,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TipoUsuario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TipoUser_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Reclamoes" Relationship="Self.FK_ReclamoUsuario1" FromRole="Usuario" ToRole="Reclamo" />
-          <NavigationProperty Name="TipoUsuario1" Relationship="Self.FK_UsuarioTipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
-          <NavigationProperty Name="Reclamoes1" Relationship="Self.ReclamoUsuario" FromRole="Usuario" ToRole="Reclamo" />
+          <NavigationProperty Name="Reclamos" Relationship="Self.FK_ReclamoUsuario1" FromRole="Usuario" ToRole="Reclamo" />
+          <NavigationProperty Name="TipoUsuario" Relationship="Self.FK_UsuarioTipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
+          <NavigationProperty Name="ReclamosAdheridos" Relationship="Self.ReclamoUsuario" FromRole="Usuario" ToRole="Reclamo" />
+          <Property Name="Contraseña" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="NombreUsuario" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
         </EntityType>
         <Association Name="FK_HistoricoArea">
           <End Role="Area" Type="Self.Area" Multiplicity="1" />
@@ -434,10 +435,11 @@
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="ReclamosModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
                 <ScalarProperty Name="TipoUser_Id" ColumnName="TipoUser_Id" />
               </MappingFragment>
             </EntityTypeMapping>

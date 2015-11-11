@@ -41,11 +41,9 @@ namespace LasCarasDeHeraldo
         private void button2_Click(object sender, EventArgs e)
         {
             RegistrarUsuario lReg = new RegistrarUsuario();
-            lReg.AdminMode = true;
+            lReg.ModoAdmin(true);
             this.Hide();
-
             lReg.ShowDialog();
-
             this.Show();
         }
     }

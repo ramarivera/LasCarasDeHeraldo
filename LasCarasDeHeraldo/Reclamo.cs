@@ -17,8 +17,8 @@ namespace LasCarasDeHeraldo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Reclamo()
         {
-            this.Historicoes = new HashSet<Historico>();
-            this.Usuarios = new HashSet<Usuario>();
+            this.Historicos = new HashSet<Historico>();
+            this.UsuariosAdherentes = new HashSet<Usuario>();
         }
     
         public int Id { get; set; }
@@ -27,9 +27,9 @@ namespace LasCarasDeHeraldo
         public int Adherentes_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Historico> Historicoes { get; set; }
+        public virtual ICollection<Historico> Historicos { get; set; }
         public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual ICollection<Usuario> UsuariosAdherentes { get; set; }
     }
 }
