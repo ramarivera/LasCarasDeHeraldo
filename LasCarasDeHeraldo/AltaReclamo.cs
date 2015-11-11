@@ -47,6 +47,7 @@ namespace LasCarasDeHeraldo
                 try
                 {
                     context.SaveChanges();
+                    MessageBox.Show("Reclamo guardado correctamente");
                 }
                 catch (Exception ex)
                 {
