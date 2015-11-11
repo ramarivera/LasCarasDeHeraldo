@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gestionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listarReclamosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actualizarEstadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reclamosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.darDeAltaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +42,6 @@
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.actualizarEstadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -73,6 +73,13 @@
             this.listarReclamosToolStripMenuItem.Name = "listarReclamosToolStripMenuItem";
             this.listarReclamosToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.listarReclamosToolStripMenuItem.Text = "Listar Reclamos";
+            // 
+            // actualizarEstadoToolStripMenuItem
+            // 
+            this.actualizarEstadoToolStripMenuItem.Name = "actualizarEstadoToolStripMenuItem";
+            this.actualizarEstadoToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.actualizarEstadoToolStripMenuItem.Text = "Actualizar Estado";
+            this.actualizarEstadoToolStripMenuItem.Click += new System.EventHandler(this.actualizarEstadoToolStripMenuItem_Click);
             // 
             // reclamosToolStripMenuItem
             // 
@@ -147,13 +154,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(178, 86);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // actualizarEstadoToolStripMenuItem
-            // 
-            this.actualizarEstadoToolStripMenuItem.Name = "actualizarEstadoToolStripMenuItem";
-            this.actualizarEstadoToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.actualizarEstadoToolStripMenuItem.Text = "Actualizar Estado";
-            this.actualizarEstadoToolStripMenuItem.Click += new System.EventHandler(this.actualizarEstadoToolStripMenuItem_Click);
             // 
             // Principal
             // 

@@ -51,10 +51,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(44, 85);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 16);
+            this.label1.Size = new System.Drawing.Size(47, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Titulo:";
             // 
@@ -82,7 +82,7 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(23, 393);
+            this.richTextBox1.Location = new System.Drawing.Point(23, 387);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(444, 123);
             this.richTextBox1.TabIndex = 4;
@@ -130,7 +130,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(35, 371);
+            this.label3.Location = new System.Drawing.Point(35, 364);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 17);
             this.label3.TabIndex = 9;
@@ -138,10 +138,10 @@
             // 
             // buttonBuscar
             // 
-            this.buttonBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.buttonBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.buttonBuscar.Location = new System.Drawing.Point(330, 29);
             this.buttonBuscar.Name = "buttonBuscar";
-            this.buttonBuscar.Size = new System.Drawing.Size(75, 23);
+            this.buttonBuscar.Size = new System.Drawing.Size(69, 28);
             this.buttonBuscar.TabIndex = 10;
             this.buttonBuscar.Text = "Buscar";
             this.buttonBuscar.UseVisualStyleBackColor = true;
@@ -150,12 +150,12 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label4.Location = new System.Drawing.Point(54, 32);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 16);
+            this.label4.Size = new System.Drawing.Size(129, 17);
             this.label4.TabIndex = 11;
-            this.label4.Text = "Buscar por Codigo";
+            this.label4.Text = "Buscar por Codigo:";
             // 
             // textBusqueda
             // 
