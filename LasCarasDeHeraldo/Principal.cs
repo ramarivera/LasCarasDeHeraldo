@@ -86,5 +86,7 @@ namespace LasCarasDeHeraldo
             var lAct = new ActualizarEstado();
             lAct.ShowDialog();
         }
+
+       
     }
 }

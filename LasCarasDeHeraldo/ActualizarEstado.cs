@@ -21,6 +21,7 @@ namespace LasCarasDeHeraldo
             this.InicializarListaReclamos();
             this.InicializarListaEstados();
             this.InicializarListaAreas();
+             this.comboReclamos.LostFocus += new System.EventHandler(this.ActualizarReclamo_Leave);
 
         }
 
@@ -61,7 +62,7 @@ namespace LasCarasDeHeraldo
                 {
                     comboReclamos.ValueMember = "Id";
                     comboReclamos.DisplayMember = "Id";
-                    comboReclamos.DataSource = new BindingList<Reclamo>(context.Reclamos.ToList<Reclamo>()); ;
+                    comboReclamos.DataSource = new BindingList<Reclamo>(context.Reclamos.Include("Historicos.Estado").Include("Historicos.Area").ToList<Reclamo>()); ;
                 }
                 catch (Exception ex)
                 {
@@ -83,7 +84,7 @@ namespace LasCarasDeHeraldo
 
                     int lIdReclamo = ((Reclamo) this.comboReclamos.SelectedItem).Id;
                     int lIdEstado = ((Estado)this.comboEstados.SelectedItem).Id;
-                    int lIdArea = 5;
+                    int lIdArea = ((Area)this.comboAreas.SelectedItem).Id;
 
 
                     Historico lHistorico = new Historico() { Comentario = this.richTextBox1.Text, FechaHora = DateTime.Now, Reclamo_Id = lIdReclamo, Estado_Id = lIdEstado, Area_Id = lIdArea };
@@ -128,7 +129,7 @@ namespace LasCarasDeHeraldo
         {
             Historico lHistorico = ((Reclamo)this.comboReclamos.SelectedItem).Historicos.OrderByDescending(his => his.FechaHora).First();
             this.textEstadoActual.Text = lHistorico.Estado.Nombre;
-            this.comboAreas.SelectedIndex = this.comboAreas.Items.IndexOf(lHistorico.Area);
+            this.comboAreas.SelectedValue = lHistorico.Area.Id;
         }
     }
 }

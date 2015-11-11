@@ -93,7 +93,6 @@
             this.comboReclamos.TabIndex = 4;
             this.comboReclamos.SelectedIndexChanged += new System.EventHandler(this.comboReclamo_SelectedIndexChanged);
             this.comboReclamos.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ComboReclamoFormat);
-            this.comboReclamos.Leave += new System.EventHandler(this.ActualizarReclamo_Leave);
             // 
             // label2
             // 

@@ -97,8 +97,9 @@ namespace LasCarasDeHeraldo
                     {
                         var lResultado = from rec in context.Reclamos
                                          from usr in rec.UsuariosAdherentes
-                                         where rec.Id == lCod && usr.Id == this.User.Id
+                                         where rec.Id == lCod && (usr.Id == this.User.Id || this.User.TipoUsuario.Nombre=="Admin")
                                          select rec;
+
 
                         Reclamo lReclamo = lResultado.FirstOrDefault<Reclamo>();
 
@@ -113,7 +114,13 @@ namespace LasCarasDeHeraldo
 
                             if (lUltimoHistorico != null && lUltimoHistorico.Estado.Nombre == "Terminado")
                             {
-                                this.ActivarComentario();
+                                string lCadena = "Su reclamo se encuentra en estado Terminado. Nos ayudaria mucho a mejorar" +
+                                    "si nos comentara como considero la gestion del reclamo. Desea hacerlo?";
+                                DialogResult lDiag = MessageBox.Show(lCadena, "Reclamo Terminado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (lDiag==DialogResult.Yes)
+                                {
+                                    this.ActivarComentario();
+                                }
                             }
                             var listaAnonima = lHistoricos.Select(his => new
                                 {Fecha = his.FechaHora, Estado = his.Estado.Nombre, Area = his.Area.Nombre, Comentario = his.Comentario }).ToList().ToBindingList();
