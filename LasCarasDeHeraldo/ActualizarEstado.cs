@@ -12,15 +12,27 @@ namespace LasCarasDeHeraldo
 {
     public partial class ActualizarEstado : Form
     {
-        private BindingList<Reclamo> listaReclamos = new BindingList<Reclamo>();
-        private BindingList<Estado> listaEstados = new BindingList<Estado>();
+       /* private BindingList<Reclamo> listaReclamos = new BindingList<Reclamo>();
+        private BindingList<Estado> listaEstados = new BindingList<Estado>();*/
 
         public ActualizarEstado()
         {
             InitializeComponent();
             this.InicializarListaReclamos();
             this.InicializarListaEstados();
+            this.InicializarListaAreas();
 
+        }
+
+        private void InicializarListaAreas()
+        {
+            using (var context = new ReclamoEntities())
+            {
+                comboAreas.ValueMember = "Id";
+                comboAreas.DisplayMember = "Nombre";
+                comboAreas.DataSource = new BindingList<Area>(context.Areas.ToList<Area>());
+            }
+            
         }
 
         private void InicializarListaEstados()
@@ -29,10 +41,9 @@ namespace LasCarasDeHeraldo
             {
                 try
                 {
-                    this.listaEstados = new BindingList<Estado>(context.Estados.ToList<Estado>());
-                    comboEstado.ValueMember = "Id";
-                    comboEstado.DisplayMember = "Nombre";
-                    comboEstado.DataSource = listaEstados;
+                    comboEstados.ValueMember = "Id";
+                    comboEstados.DisplayMember = "Nombre";
+                    comboEstados.DataSource = new BindingList<Estado>(context.Estados.ToList<Estado>()); ;
                 }
                 catch (Exception ex)
                 {
@@ -48,10 +59,9 @@ namespace LasCarasDeHeraldo
             {
                 try
                 {
-                    this.listaReclamos = new BindingList<Reclamo>(context.Reclamos.ToList<Reclamo>());
-                    comboReclamo.ValueMember = "Id";
-                    comboReclamo.DisplayMember = "Id";
-                    comboReclamo.DataSource = listaReclamos;
+                    comboReclamos.ValueMember = "Id";
+                    comboReclamos.DisplayMember = "Id";
+                    comboReclamos.DataSource = new BindingList<Reclamo>(context.Reclamos.ToList<Reclamo>()); ;
                 }
                 catch (Exception ex)
                 {
@@ -67,13 +77,12 @@ namespace LasCarasDeHeraldo
             {
                 try
                 {
-                    this.listaReclamos = new BindingList<Reclamo>(context.Reclamos.ToList<Reclamo>());
-                    comboReclamo.ValueMember = "Id";
-                    comboReclamo.DisplayMember = "Id";
-                    comboReclamo.DataSource = listaReclamos;
+                    comboReclamos.ValueMember = "Id";
+                    comboReclamos.DisplayMember = "Id";
+                    comboReclamos.DataSource = new BindingList<Reclamo>(context.Reclamos.ToList<Reclamo>()); ;
 
-                    int lIdReclamo = ((Reclamo) this.comboReclamo.SelectedItem).Id;
-                    int lIdEstado = ((Estado)this.comboEstado.SelectedItem).Id;
+                    int lIdReclamo = ((Reclamo) this.comboReclamos.SelectedItem).Id;
+                    int lIdEstado = ((Estado)this.comboEstados.SelectedItem).Id;
                     int lIdArea = 5;
 
 
@@ -108,6 +117,18 @@ namespace LasCarasDeHeraldo
         private void comboEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ActualizarReclamo_Leave(object sender, EventArgs e)
+        {
+            Historico lHistorico = ((Reclamo)this.comboReclamos.SelectedItem).Historicos.OrderByDescending(his => his.FechaHora).First();
+            this.textEstadoActual.Text = lHistorico.Estado.Nombre;
+            this.comboAreas.SelectedIndex = this.comboAreas.Items.IndexOf(lHistorico.Area);
         }
     }
 }
