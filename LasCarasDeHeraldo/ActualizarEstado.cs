@@ -104,5 +104,10 @@ namespace LasCarasDeHeraldo
             string titulo = ((Reclamo)e.ListItem).Titulo;
             e.Value = cod.ToString("D4") + "-" + titulo;
         }
+
+        private void comboEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

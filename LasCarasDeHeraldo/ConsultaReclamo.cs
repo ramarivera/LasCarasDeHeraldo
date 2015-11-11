@@ -65,6 +65,7 @@ namespace LasCarasDeHeraldo
         private void ActivarComentario()
         {
             this.CambiarTamaño(514, 608);
+            comboConformidad.DataSource = Enumerable.Range(1, 10).ToList().ToBindingList();
         }
 
 
@@ -95,14 +96,17 @@ namespace LasCarasDeHeraldo
                     try
                     {
                         var lResultado = from rec in context.Reclamos
-                                         where ((rec.Emisor == this.User.Id)  &&   rec.Id == lCod)
-                                                // (rec.UsuariosAdherentes.Contains(this.User)  ||
+                                         from usr in rec.UsuariosAdherentes
+                                         where rec.Id == lCod && usr.Id == this.User.Id
                                          select rec;
 
                         Reclamo lReclamo = lResultado.FirstOrDefault<Reclamo>();
 
                         if (lReclamo != null)
                         {
+                            this.textTitulo.Text = lReclamo.Titulo;
+                            this.textCodigo.Text = lReclamo.Id.ToString("D4");
+                            this.textUsuario.Text = lReclamo.Usuario.Nombre;
                             List<Historico> lHistoricos = lReclamo.Historicos.ToList<Historico>();
                             lHistoricos.Sort((x, y) => DateTime.Compare(y.FechaHora,x.FechaHora));
                             Historico lUltimoHistorico = lHistoricos.FirstOrDefault<Historico>();
@@ -142,7 +146,7 @@ namespace LasCarasDeHeraldo
 
         private void buttonAceptar_Click(object sender, EventArgs e)
         {
-            Debugger.Break();
+           // Debugger.Break();
         }
     }
 }

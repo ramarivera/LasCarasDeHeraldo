@@ -15,6 +15,7 @@ namespace LasCarasDeHeraldo
         private readonly BindingList<TipoUsuario> listaTipos = new BindingList<TipoUsuario>();
 
         public bool AdminMode { get; internal set; }
+        public bool AnonMode { get; internal set; }
 
         public RegistrarUsuario()
         {
@@ -25,7 +26,7 @@ namespace LasCarasDeHeraldo
             {
                 try
                 {
-                    this.listaTipos = new BindingList<TipoUsuario>(context.TipoUsuarios.ToList<TipoUsuario>());
+                    this.listaTipos = new BindingList<TipoUsuario>(context.TipoUsuarios.OrderBy(tip => tip.Nombre).ToList<TipoUsuario>());
                     comboBox1.ValueMember = "Id";
                     comboBox1.DisplayMember = "Nombre";
                     comboBox1.DataSource = listaTipos;
@@ -45,7 +46,17 @@ namespace LasCarasDeHeraldo
             {
                 this.label5.Hide();
                 this.comboBox1.Hide();
+                this.comboBox1.SelectedIndex = 2;
+            }
+            if (AnonMode)
+            {
+                this.label5.Hide();
+                this.comboBox1.Hide();
                 this.comboBox1.SelectedIndex = 1;
+                this.label1.Hide();
+                this.label2.Hide();
+                this.textBox1.Hide();
+                this.textBox2.Hide();
             }
         }
 
@@ -130,6 +141,11 @@ namespace LasCarasDeHeraldo
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -26,7 +26,7 @@ namespace LasCarasDeHeraldo
 
         private void ConfigurarControles()
         {
-            if (this.User.TipoUsuario.Nombre == "User")
+            if (this.User.TipoUsuario.Nombre == "User" || this.User.TipoUsuario.Nombre == "Anon")
             {
                 gestionToolStripMenuItem.Visible = false;
                 buscarToolStripMenuItem.Visible = false; 
