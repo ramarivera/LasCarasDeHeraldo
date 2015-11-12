@@ -80,7 +80,6 @@
             this.comboEstados.Name = "comboEstados";
             this.comboEstados.Size = new System.Drawing.Size(156, 24);
             this.comboEstados.TabIndex = 3;
-            this.comboEstados.SelectedIndexChanged += new System.EventHandler(this.comboEstado_SelectedIndexChanged);
             // 
             // comboReclamos
             // 
@@ -91,7 +90,6 @@
             this.comboReclamos.Name = "comboReclamos";
             this.comboReclamos.Size = new System.Drawing.Size(227, 24);
             this.comboReclamos.TabIndex = 4;
-            this.comboReclamos.SelectedIndexChanged += new System.EventHandler(this.comboReclamo_SelectedIndexChanged);
             this.comboReclamos.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ComboReclamoFormat);
             // 
             // label2
@@ -123,7 +121,6 @@
             this.label4.Size = new System.Drawing.Size(99, 17);
             this.label4.TabIndex = 7;
             this.label4.Text = "Estado Actual:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // textEstadoActual
             // 
@@ -132,6 +129,7 @@
             this.textEstadoActual.Name = "textEstadoActual";
             this.textEstadoActual.Size = new System.Drawing.Size(156, 23);
             this.textEstadoActual.TabIndex = 8;
+            this.textEstadoActual.TextChanged += new System.EventHandler(this.textEstadoActual_TextChanged);
             // 
             // comboAreas
             // 
@@ -174,6 +172,8 @@
             this.MinimumSize = new System.Drawing.Size(392, 410);
             this.Name = "ActualizarEstado";
             this.Text = "Actualizar Estado de Reclamo";
+            this.Load += new System.EventHandler(this.ActualizarEstado_Load);
+            this.Click += new System.EventHandler(this.ActualizarReclamo_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();
 

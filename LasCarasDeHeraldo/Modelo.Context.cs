@@ -18,6 +18,7 @@ namespace LasCarasDeHeraldo
         public ReclamoEntities()
             : base("name=ReclamoEntities")
         {
+          //  this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
