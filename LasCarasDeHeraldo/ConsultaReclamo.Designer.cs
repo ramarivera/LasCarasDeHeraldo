@@ -67,7 +67,6 @@
             this.label2.Size = new System.Drawing.Size(60, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Codigo: ";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // dataGridView1
             // 
@@ -78,7 +77,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(453, 140);
             this.dataGridView1.TabIndex = 2;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // richTextBox1
             // 
@@ -108,7 +106,6 @@
             this.buttonEnviarComentario.TabIndex = 6;
             this.buttonEnviarComentario.Text = "Enviar Comentario";
             this.buttonEnviarComentario.UseVisualStyleBackColor = true;
-            this.buttonEnviarComentario.Click += new System.EventHandler(this.button2_Click);
             // 
             // textTitulo
             // 
@@ -181,7 +178,6 @@
             this.label5.Size = new System.Drawing.Size(61, 17);
             this.label5.TabIndex = 13;
             this.label5.Text = "Usuario:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // comboConformidad
             // 
@@ -248,7 +244,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonBuscar;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBusqueda;
+        internal System.Windows.Forms.TextBox textBusqueda;
         private System.Windows.Forms.TextBox textUsuario;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboConformidad;

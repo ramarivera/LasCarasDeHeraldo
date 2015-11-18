@@ -17,10 +17,7 @@ namespace LasCarasDeHeraldo
             this.SetStyle(ControlStyles.UserPaint, true);
         }
 
-        protected override void OnPaintBackground(PaintEventArgs pevent)
-        {
-            // None... Helps control the flicker.
-        }
+        protected override void OnPaintBackground(PaintEventArgs pevent) { }
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -32,13 +29,20 @@ namespace LasCarasDeHeraldo
                 {
                     Rectangle rect = new Rectangle(0, 0, this.Width, this.Height);
 
-                    if (ProgressBarRenderer.IsSupported)
-                        ProgressBarRenderer.DrawHorizontalBar(offscreen, rect);
+                    if (ProgressBarRenderer.IsSupported) 
+					{
+						ProgressBarRenderer.DrawHorizontalBar(offscreen, rect);
+					}
+                        
 
                     rect.Inflate(new Size(-inset, -inset)); // Deflate inner rect.
                     rect.Width = (int)(rect.Width * ((double)this.Value / this.Maximum));
-                    if (rect.Width == 0) rect.Width = 1; // Can't draw rec with width of 0.
-
+					
+                    if (rect.Width == 0)  // No puedo dibujar un rectangulo  de ancho 0
+					{
+						rect.Width = 1; 
+					}
+					
                     LinearGradientBrush brush = new LinearGradientBrush(rect, this.BackColor, this.ForeColor, LinearGradientMode.Vertical);
                     offscreen.FillRectangle(brush, inset, inset, rect.Width, rect.Height);
 
@@ -49,6 +53,7 @@ namespace LasCarasDeHeraldo
         }
     }
 
+	/// Metodo de extension de la ProgressBar (solo 3 colores)
     public static class ModifyProgressBarColor
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]

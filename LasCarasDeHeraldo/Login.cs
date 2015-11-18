@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security;
+using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,10 +43,6 @@ namespace LasCarasDeHeraldo
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -65,17 +63,42 @@ namespace LasCarasDeHeraldo
                     String lUsuarioIngresado = this.textBox2.Text;
                     String lContraseña = this.textBox1.Text;
 
+                    string userName = this.textBox2.Text; // todo
+                    string[] roles = { "Admin" }; // todo
 
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(userName), roles);
+                    Thread.CurrentPrincipal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
 
                     Usuario lUsuario = this.ListaUsuarios.Where(us => us.NombreUsuario == lUsuarioIngresado).FirstOrDefault<Usuario>();
 
                     if (lUsuario != null && lUsuario.Contraseña == lContraseña)
                     {
-                        this.Hide();
-                        var lPrin = new Principal();
-                        lPrin.User = lUsuario;
-                        lPrin.Closed += (s, args) => this.Close();
-                        lPrin.Show();
+                        IPrincipal principal = Thread.CurrentPrincipal;
+                        IIdentity identity = principal == null ? null : principal.Identity;
+
+                        if (DialogResult.Yes == MessageBox.Show(
+                                                                String.Format("Identity.Name: {0}", identity == null ? "" : identity.Name),
+                                                                "Continuar?",
+                                                                MessageBoxButtons.YesNo))
+                        {
+
+                            try
+                            {
+                                this.Hide();
+                                var lPrin = new Principal();
+                                lPrin.User = lUsuario;
+                                lPrin.Closed += (s, args) => this.Close();
+                                lPrin.Mostrar();
+                            }
+                            catch (SecurityException ex)
+                            {
+                                MessageBox.Show(
+                                            ex.Message,
+                                            "Error", MessageBoxButtons.OK,
+                                            MessageBoxIcon.Error);
+                            }
+
+                        }
                     }
                     else
                     {
@@ -107,7 +130,7 @@ namespace LasCarasDeHeraldo
             using (var context = new ReclamoEntities())
             {
                 var backgroundWorker = sender as BackgroundWorker;
-                
+
                 for (int i = 1; i <= 100; i++)
                 {
                     Thread.Sleep(1);
@@ -140,5 +163,6 @@ namespace LasCarasDeHeraldo
         {
             progressBar1.Visible = false;
         }
+
     }
 }

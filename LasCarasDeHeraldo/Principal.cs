@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +14,8 @@ namespace LasCarasDeHeraldo
     public partial class Principal : Form
     {
         public Usuario User { get; internal set; }
+
+        
         public Principal()
         {
             InitializeComponent();
@@ -67,6 +70,7 @@ namespace LasCarasDeHeraldo
 
         }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = "NotAdmin")]
         private void Salir()
         {
             DialogResult lResult = MessageBox.Show("Desea salir del sistema?", "Salir", MessageBoxButtons.YesNo);
@@ -74,8 +78,15 @@ namespace LasCarasDeHeraldo
             {
                 this.Close();
             }
-
         }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
+        public void Mostrar()
+        {
+            this.Show();
+        }
+
+
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Salir();   
@@ -87,6 +98,16 @@ namespace LasCarasDeHeraldo
             lAct.ShowDialog();
         }
 
-       
+        private void listarReclamosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var lListar = new ListarReclamos();
+            lListar.User = this.User;
+            lListar.ShowDialog();
+        }
+
+        private void gestionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
